@@ -1,0 +1,21 @@
+{% extends 'user/base.html' %}
+
+{% load humanize %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item active">Usuario: {{user}}</li><br>
+    <li class="breadcrumb-item active">Senha: **********</li>
+
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4"></legend>
+            <p>Are you sure you want to delete your account?  This will permanently delete your
+               profile and any content you have generated.</p>
+    </fieldset>
+    <div class="form-group">
+        <a  href="{% url 'user:delete' %}" class="btn btn-danger" type="submit">Delete</a>
+
+    </div>
+{% endblock %}
+
+{% block content %}
+{% endblock %}

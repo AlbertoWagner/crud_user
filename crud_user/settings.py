@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'user',
+    'widget_tweaks',
+    'django.contrib.humanize',
+
 ]
 
 MIDDLEWARE = [
@@ -77,7 +81,7 @@ WSGI_APPLICATION = 'crud_user.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME':  os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -119,3 +123,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+#TODO fazer a configuração smtp para seta o e-mail empresa
+EMAIL_PORT = 1025
+LOGOUT_REDIRECT_URL = '/'
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'empresa@empresa.com'
+EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST = 'smtp.gmail.com'
+LOGIN_REDIRECT_URL = 'user:home'
